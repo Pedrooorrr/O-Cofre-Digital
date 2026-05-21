@@ -1,4 +1,4 @@
-# 🔐 O Cofre Digital — API REST em PHP
+# O Cofre Digital — API REST em PHP
 
 API REST minimalista para guardar anotações e senhas secretas com criptografia AES-256.
 
