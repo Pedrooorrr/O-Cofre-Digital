@@ -2,14 +2,14 @@
 
 API REST minimalista para guardar anotações e senhas secretas com criptografia AES-256.
 
----
+
 
 ## Requisitos
 
 - PHP 8.1+ (com extensões: `pdo_sqlite` ou `pdo_mysql`, `openssl`)
 - Servidor web com mod_rewrite (Apache) **ou** use o servidor embutido do PHP
 
----
+
 
 ## Instalação
 
@@ -29,7 +29,7 @@ php -S localhost:8080 -t public/
 
 O banco de dados SQLite é criado automaticamente em `database/cofre.sqlite` na primeira requisição.
 
----
+
 
 ## Configuração
 
@@ -43,7 +43,7 @@ Edite o arquivo `.env` na raiz do projeto:
 | `TOKEN_TTL_HOURS`| `24`                      | Validade do token em horas     |
 | `TIMEZONE`       | `America/Sao_Paulo`       | Fuso horário da aplicação      |
 
----
+
 
 ## Endpoints
 
@@ -56,7 +56,7 @@ Edite o arquivo `.env` na raiz do projeto:
   "email": "joao@email.com",
   "password": "minhasenha123"
 }
-```
+
 
 #### `POST /auth/login` — Fazer login
 ```json
@@ -67,7 +67,7 @@ Edite o arquivo `.env` na raiz do projeto:
 ```
 Retorna um `token` Bearer para usar nas próximas requisições.
 
----
+
 
 ### Segredos (requer `Authorization: Bearer {token}`)
 
@@ -100,7 +100,6 @@ Retorna um `token` Bearer para usar nas próximas requisições.
 
 #### `DELETE /secrets/{id}` — Remover segredo
 
----
 
 ## Exemplo com cURL
 
@@ -131,7 +130,7 @@ curl http://localhost:8080/secrets/1 \
   -H "Authorization: Bearer $TOKEN"
 ```
 
----
+
 
 ## Estrutura do Projeto
 
@@ -159,13 +158,13 @@ cofre-digital/
 └── README.md
 ```
 
----
+
 
 ## Segurança
 
-- ✅ Senhas com **bcrypt** (custo 12)
-- ✅ Conteúdo dos segredos com **AES-256-CBC + HMAC-SHA256**
-- ✅ Tokens de 64 caracteres gerados com `random_bytes`
-- ✅ Tokens expiram automaticamente
-- ✅ Cada usuário acessa apenas seus próprios segredos
-- ✅ Conteúdo nunca exposto no endpoint de listagem
+-  Senhas com **bcrypt** (custo 12)
+-  Conteúdo dos segredos com **AES-256-CBC + HMAC-SHA256**
+-  Tokens de 64 caracteres gerados com `random_bytes`
+-  Tokens expiram automaticamente
+-  Cada usuário acessa apenas seus próprios segredos
+-  Conteúdo nunca exposto no endpoint de listagem
